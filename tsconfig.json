@@ -6,5 +6,21 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/list-form-control/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/list-form-control/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/list-form-control-example/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/list-form-control-example/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/list-form-control-example/e2e/tsconfig.json"
+    }
+]
 }
