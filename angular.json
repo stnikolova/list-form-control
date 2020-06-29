@@ -30,8 +30,9 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
+            "eslintConfig": ".eslintrc.js",
             "tsConfig": [
               "projects/list-form-control/tsconfig.lib.json",
               "projects/list-form-control/tsconfig.spec.json"
@@ -138,8 +139,9 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
+            "eslintConfig": ".eslintrc.js",
             "tsConfig": [
               "projects/list-form-control-example/tsconfig.app.json",
               "projects/list-form-control-example/tsconfig.spec.json",

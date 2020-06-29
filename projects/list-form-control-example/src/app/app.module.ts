@@ -4,14 +4,9 @@ import { ListFormControlModule } from 'list-form-control';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    ListFormControlModule,
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, ListFormControlModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
