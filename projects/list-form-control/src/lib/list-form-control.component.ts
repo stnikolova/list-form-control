@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild, TemplateRef, ContentChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  TemplateRef,
+  ContentChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { ListControlContentDirective } from './directives/list-control-content.directive';
 
 @Component({
@@ -6,6 +13,7 @@ import { ListControlContentDirective } from './directives/list-control-content.d
   templateUrl: './list-form-control.component.html',
   styleUrls: ['./list-form-control.component.scss'],
   exportAs: 'listControl',
+  encapsulation: ViewEncapsulation.None,
 })
 export class ListFormControlComponent implements OnInit {
   // Obtain a reference to the root template

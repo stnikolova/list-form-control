@@ -1,0 +1,25 @@
+.lib-list {
+    width: 100%;
+    border: solid 1px #ccc;
+    background: #fff;
+    padding: 5px 0;
+
+    &__content {
+        list-style-type: none;
+        padding-inline-start: 0;
+        margin: 0;
+    }
+
+    &__item {
+        padding: 5px 10px;
+    }
+
+    &__input {
+        border: solid 1px #ccc;
+        padding: 5px 10px;
+
+        &:focus {
+            outline-offset: 0;
+        }
+    }
+}

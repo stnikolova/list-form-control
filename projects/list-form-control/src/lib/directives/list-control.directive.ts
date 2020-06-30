@@ -1,5 +1,5 @@
 import { Directive, OnInit, Input, ElementRef, ViewContainerRef } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { NgControl, AbstractControl } from '@angular/forms';
 import {
   OverlayRef,
   Overlay,
@@ -9,8 +9,8 @@ import {
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 
-import { fromEvent, ReplaySubject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { fromEvent, ReplaySubject, Observable } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
 import { ListFormControlComponent } from '../list-form-control.component';
 
 // Instantiate the template passed to the ListFormControlComponent
@@ -21,6 +21,10 @@ import { ListFormControlComponent } from '../list-form-control.component';
 })
 export class ListControlDirective implements OnInit {
   @Input() listControl: ListFormControlComponent;
+  public isMenuOpen = false;
+
+  private origin: HTMLInputElement;
+  private inputControl: AbstractControl;
   private overlayRef: OverlayRef;
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
@@ -32,16 +36,9 @@ export class ListControlDirective implements OnInit {
     private ngControl: NgControl,
     private vcr: ViewContainerRef,
     private overlay: Overlay,
-  ) {}
-
-  // Returns the input as a form control
-  get control() {
-    return this.ngControl.control;
-  }
-
-  // Returns the input element as an HTML element
-  get origin() {
-    return this.host.nativeElement;
+  ) {
+    this.origin = this.host.nativeElement;
+    this.inputControl = this.ngControl.control;
   }
 
   public ngOnInit() {
@@ -61,6 +58,14 @@ export class ListControlDirective implements OnInit {
     // Pass the template to be rendered in the overlay, e.g. the list
     const template = new TemplatePortal(this.listControl.rootTemplate, this.vcr);
     this.overlayRef.attach(template);
+
+    // Attach event listener for when the user clicks outside of the control
+    this.overlayClickOutside(this.overlayRef, this.origin).subscribe(() => this.close());
+  }
+
+  private close(): void {
+    this.overlayRef.detach();
+    this.overlayRef = null;
   }
 
   private getOverlayConfig(): OverlayConfig {
@@ -102,5 +107,20 @@ export class ListControlDirective implements OnInit {
         overlayY: 'bottom',
       },
     ];
+  }
+
+  // Listen for a click event and close the list when either the click target isn’t the origin
+  // or it isn’t the dropdown or any one of its children.
+  private overlayClickOutside(overlayRef: OverlayRef, origin: HTMLElement): Observable<MouseEvent> {
+    return fromEvent<MouseEvent>(document, 'click').pipe(
+      filter((event) => {
+        const clickTarget = event.target as HTMLElement;
+        const notOrigin = clickTarget !== origin;
+        const notOverlay =
+          !!overlayRef && overlayRef.overlayElement.contains(clickTarget) === false;
+        return notOrigin && notOverlay;
+      }),
+      takeUntil(overlayRef.detachments()),
+    );
   }
 }
