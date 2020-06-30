@@ -1,7 +1,19 @@
-<input 
-    type="text" 
-    placeholder="Start typing..." 
-    aria-label="List" 
-    class="form-control">
-
-<lib-list-form-control></lib-list-form-control>
+<form class="form">
+    <input 
+        type="text" 
+        placeholder="Start typing..." 
+        aria-label="List" 
+        [formControl]="myControl"
+        [listControl]="list">
+    
+    <lib-list-form-control #list="listControl">
+        <ng-template  listControlContent>
+            <!-- Hard-coded for testing puropses only -->
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+            </ul>
+        </ng-template>
+    </lib-list-form-control>
+</form>
