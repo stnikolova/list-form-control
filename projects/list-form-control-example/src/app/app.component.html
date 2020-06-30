@@ -8,7 +8,7 @@
     [listControl]="list"
   />
 
-  <lib-list-form-control class="lib-list__content" #list="listControl">
+  <lib-list-control-content class="lib-list__content" #list="listControl">
     <ng-template listControlContent>
       <lib-list-control-item 
         *ngFor="let item of items" 
@@ -16,5 +16,5 @@
         {{item}}
     </lib-list-control-item>
     </ng-template>
-  </lib-list-form-control>
+  </lib-list-control-content>
 </form>

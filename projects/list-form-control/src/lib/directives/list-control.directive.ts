@@ -11,7 +11,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
 
 import { fromEvent, ReplaySubject, Observable } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
-import { ListFormControlComponent } from '../list-form-control.component';
+import { ListControlContentComponent } from '../components/list-control-content/list-control-content.component';
 
 // Instantiate the template passed to the ListFormControlComponent
 // And manage its visibility
@@ -20,7 +20,7 @@ import { ListFormControlComponent } from '../list-form-control.component';
   exportAs: 'listControl',
 })
 export class ListControlDirective implements OnInit {
-  @Input() listControl: ListFormControlComponent;
+  @Input() listControl: ListControlContentComponent;
 
   private origin: HTMLInputElement;
   private inputControl: AbstractControl;
