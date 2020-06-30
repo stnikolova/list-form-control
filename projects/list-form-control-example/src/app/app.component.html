@@ -1,20 +1,20 @@
 <form class="form">
-    <input 
-        type="text" 
-        placeholder="Start typing..." 
-        aria-label="List" 
-        class="lib-list__input"
-        [formControl]="myControl"
-        [listControl]="list">
-    
-    <lib-list-form-control #list="listControl">
-        <ng-template listControlContent>
-            <!-- Hard-coded for testing puropses only -->
-            <ul class="lib-list__content">
-                <li class="lib-list__item">Item 1</li>
-                <li class="lib-list__item">Item 2</li>
-                <li class="lib-list__item">Item 3</li>
-            </ul>
-        </ng-template>
-    </lib-list-form-control>
+  <input
+    type="text"
+    placeholder="Start typing..."
+    aria-label="List"
+    class="lib-list__input"
+    [formControl]="myControl"
+    [listControl]="list"
+  />
+
+  <lib-list-form-control class="lib-list__content" #list="listControl">
+    <ng-template listControlContent>
+      <lib-list-control-item 
+        *ngFor="let item of items" 
+        [value]="item">
+        {{item}}
+    </lib-list-control-item>
+    </ng-template>
+  </lib-list-form-control>
 </form>

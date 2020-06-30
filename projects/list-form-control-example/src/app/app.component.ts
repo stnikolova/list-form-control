@@ -8,4 +8,5 @@ import { FormControl } from '@angular/forms';
 })
 export class AppComponent {
   public myControl = new FormControl();
+  public items = ['item 1', 'item 2', 'item 3'];
 }

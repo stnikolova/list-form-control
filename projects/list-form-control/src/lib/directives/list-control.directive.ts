@@ -21,7 +21,6 @@ import { ListFormControlComponent } from '../list-form-control.component';
 })
 export class ListControlDirective implements OnInit {
   @Input() listControl: ListFormControlComponent;
-  public isMenuOpen = false;
 
   private origin: HTMLInputElement;
   private inputControl: AbstractControl;
