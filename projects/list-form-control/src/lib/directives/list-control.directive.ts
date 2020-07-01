@@ -1,4 +1,13 @@
-import { Directive, OnInit, Input, ElementRef, ViewContainerRef } from '@angular/core';
+import {
+  Directive,
+  OnInit,
+  Input,
+  ElementRef,
+  ViewContainerRef,
+  HostListener,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { NgControl, AbstractControl } from '@angular/forms';
 import {
   OverlayRef,
@@ -7,7 +16,7 @@ import {
   OverlayConfig,
   PositionStrategy,
 } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
+import { TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
 
 import { fromEvent, ReplaySubject, Observable } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
@@ -20,10 +29,10 @@ import { ListControlContentComponent } from '../components/list-control-content/
   exportAs: 'listControl',
 })
 export class ListControlDirective implements OnInit {
-  @Input() listControl: ListControlContentComponent;
+  @Input() public listControl: ListControlContentComponent;
 
   private origin: HTMLInputElement;
-  private inputControl: AbstractControl;
+  // private inputControl: AbstractControl;
   private overlayRef: OverlayRef;
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
@@ -31,32 +40,57 @@ export class ListControlDirective implements OnInit {
   // reference to the ViewContainerRef and a reference to the
   // Angular Material’s Overlay service
   constructor(
-    private host: ElementRef<HTMLInputElement>,
-    private ngControl: NgControl,
+    private host: ElementRef,
+    // private ngControl: NgControl,
     private vcr: ViewContainerRef,
     private overlay: Overlay,
   ) {
     this.origin = this.host.nativeElement;
-    this.inputControl = this.ngControl.control;
+    // this.inputControl = this.ngControl.control;
   }
 
   public ngOnInit() {
+    // this.openDropdown();
     // Set an event listener to the host input element
-    fromEvent(this.origin, 'focus')
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe(() => {
-        // implement actions
-        this.openDropdown();
-      });
+    // fromEvent(this.origin, 'keyup')
+    //   .pipe(takeUntil(this.destroyed$))
+    //   .subscribe((event: KeyboardEvent) => {
+    //     if (event.keyCode === 13 && this.origin.value !== '') {
+    //       this.origin.value = '';
+    //     }
+    //     // this.listControl.optionsClick();
+    //   });
   }
+
+  @HostListener('inputFocus', ['$event'])
+  keyFunc(event) {
+    this.listControl.toggleDropdown(event);
+  }
+
+  @HostListener('window:click', ['$event'])
+  clickFunc(event) {
+    event.stopPropagation();
+    const clickTarget = event.target.parentElement as HTMLElement;
+    const isOrigin = clickTarget === this.origin;
+    this.listControl.toggleDropdown(isOrigin);
+    // const notOverlay = !!this.listControl && this.listControl.contains(clickTarget) === false;
+    // return notOrigin && notOverlay;
+  }
+
+  // fromEvent(this.origin, 'focus')
+  //   .pipe(takeUntil(this.destroyed$))
+  //   .subscribe(() => {
+  //     console.log(this.listControl);
+  //     this.listControl.toggleDropdown();
+  //   });
 
   public openDropdown() {
     // Create an overlay instance
     this.overlayRef = this.overlay.create(this.getOverlayConfig());
 
     // Pass the template to be rendered in the overlay, e.g. the list
-    const template = new TemplatePortal(this.listControl.rootTemplate, this.vcr);
-    this.overlayRef.attach(template);
+    // const template = new TemplatePortal(this.listControl.rootTemplate, this.vcr);
+    this.overlayRef.attach(new ComponentPortal(ListControlContentComponent));
 
     // Attach event listener for when the user clicks outside of the control
     this.overlayClickOutside(this.overlayRef, this.origin).subscribe(() => this.close());

@@ -1,0 +1,6 @@
+:host(:focus) {
+    outline: none;
+}
+:host(:focus) .lib-list__item {
+    background-color: #ddd;
+}

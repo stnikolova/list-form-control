@@ -1,5 +1,3 @@
-<ng-template #root>
-  <div class="lib-list">
-    <ng-container *ngTemplateOutlet="content.tpl"></ng-container>
+  <div class="lib-list" *ngIf="isVisible">
+    <ng-content></ng-content>
   </div>
-</ng-template>

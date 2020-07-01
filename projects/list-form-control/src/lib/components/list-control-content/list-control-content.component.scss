@@ -1,19 +1,42 @@
 .lib-list {
+    box-sizing: border-box;
+    position: absolute;
     width: 100%;
     border: solid 1px #ccc;
     background: #fff;
-    padding: 5px 0;
+
+    &__container {
+        width: 200px;
+        position: relative;
+        margin: 10px auto;
+    }
 
     &__item {
         padding: 5px 10px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    &__message {
+        display: block;
+        margin-top: -18px;
     }
 
     &__input {
         border: solid 1px #ccc;
         padding: 5px 10px;
+        width: 100%;
+        box-sizing: border-box;
 
         &:focus {
             outline-offset: 0;
         }
+    }
+
+    &__content-empty {
+        padding: 5px 10px;
+        text-align: center;
+        color: #989898;
     }
 }
