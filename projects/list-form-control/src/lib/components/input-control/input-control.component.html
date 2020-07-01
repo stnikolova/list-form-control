@@ -8,4 +8,4 @@
     (keydown.enter)="onValueEnter($event)"
     (focus)="onFocus()"
 />
-<i *ngIf="hasValue()" (click)="clearInput()">&times;</i>
+<i class="lib-list__input--clear" *ngIf="hasValue()" (click)="clearInput()">&times;</i>

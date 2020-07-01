@@ -5,7 +5,15 @@ export class AppPage {
     return browser.get(browser.baseUrl) as Promise<unknown>;
   }
 
-  getTitleText(): Promise<string> {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+  getInputElement(): any {
+    return element(by.css('.lib-list__input'));
+  }
+
+  getListElements(): any {
+    return element.all(by.css('lib-list-control-item'));
+  }
+
+  getClearIcon(): any {
+    return element(by.css('.lib-list__input--clear'));
   }
 }
