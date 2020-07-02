@@ -6,7 +6,6 @@ import { FocusableOption } from '@angular/cdk/a11y';
 @Component({
   selector: 'lib-list-control-item',
   templateUrl: './list-control-item.component.html',
-  styleUrls: ['./list-control-item.component.scss'],
   host: { tabindex: '-1' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

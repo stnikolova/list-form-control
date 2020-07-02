@@ -13,7 +13,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
   selector: 'lib-input-control',
   templateUrl: './input-control.component.html',
-  styleUrls: ['./input-control.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

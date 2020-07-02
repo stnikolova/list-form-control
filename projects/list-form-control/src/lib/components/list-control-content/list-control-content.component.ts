@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, QueryList, ContentChildren } from '@angular/core';
+import { Component, QueryList, ContentChildren } from '@angular/core';
 import { ListControlItemComponent } from '../list-control-item/list-control-item.component';
 
 @Component({
@@ -6,7 +6,6 @@ import { ListControlItemComponent } from '../list-control-item/list-control-item
   templateUrl: './list-control-content.component.html',
   styleUrls: ['./list-control-content.component.scss'],
   exportAs: 'listControl',
-  encapsulation: ViewEncapsulation.None,
 })
 export class ListControlContentComponent {
   @ContentChildren(ListControlItemComponent) listItemElements: QueryList<any>;

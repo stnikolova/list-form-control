@@ -38,6 +38,7 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         '@angular-eslint/component-selector': 'off',
         '@typescript-eslint/no-use-before-define': 'off',
+        '@angular-eslint/no-host-metadata-property': 'off',
         '@typescript-eslint/unbound-method': [
           'error',
           {

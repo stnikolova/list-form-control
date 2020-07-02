@@ -4,6 +4,7 @@
 
 <div class="lib-list__container">
   <lib-input-control
+    class="lib-list__input"
     [(ngModel)]="selectedValue"
     (valueChange)="onValueChanged($event)"
     [listControl]="list"
@@ -19,6 +20,7 @@
     <ng-container *ngIf="listItems.length; else empty">
       <lib-list-control-item
         #cmp
+        class="lib-list__item"
         *ngFor="let item of listItems.slice(0, 3); let i = index"
         [value]="item"
       >
@@ -26,7 +28,7 @@
         {{ item }}
       </lib-list-control-item>
     </ng-container>
-  
+
     <!-- Change message -->
     <ng-template #empty>
       <span class="lib-list__content-empty">The list is empty.</span>

@@ -10,6 +10,7 @@ import {
   forwardRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import { merge } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -21,7 +22,6 @@ import { ListControlDirective } from '../../directives/list-control.directive';
 @Component({
   selector: 'lib-list-control',
   templateUrl: './list-control.component.html',
-  styleUrls: ['./list-control.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -30,6 +30,7 @@ import { ListControlDirective } from '../../directives/list-control.directive';
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ListControlComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() listItems: Array<string>;
