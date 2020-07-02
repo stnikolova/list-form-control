@@ -46,6 +46,7 @@ export class ListControlComponent implements OnDestroy, AfterViewInit, ControlVa
 
   public keyboardEventsManager: ListKeyManager<any>;
   public focusKeyManager: FocusKeyManager<ListControlItemComponent>;
+  public listItemsCopy: Array<string>;
 
   public selectedValue;
   public showMessage;
@@ -53,6 +54,10 @@ export class ListControlComponent implements OnDestroy, AfterViewInit, ControlVa
   public onTouch: any = () => {};
 
   constructor(private cd: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    this.listItemsCopy = [...this.listItems].reverse();
+  }
 
   public ngAfterViewInit() {
     this.focusKeyManager = new FocusKeyManager(this.content.listItemElements).withWrap();
@@ -106,11 +111,16 @@ export class ListControlComponent implements OnDestroy, AfterViewInit, ControlVa
   }
 
   public onValueChanged(value: string) {
-    this.listItems.unshift(value);
+    this.listItemsCopy.unshift(value);
   }
 
   public onShowMessage() {
     this.showMessage = true;
+    setTimeout(() => {
+      this.showMessage = false;
+      this.cd.detectChanges();
+    }, 3000);
+
     this.cd.detectChanges();
   }
 

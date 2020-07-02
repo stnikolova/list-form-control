@@ -25,8 +25,4 @@ export class AppComponent implements OnInit {
   public ngOnInit() {
     this.myControl.valueChanges.subscribe((res) => console.log(res));
   }
-
-  public onChange(event) {
-    console.log(event);
-  }
 }

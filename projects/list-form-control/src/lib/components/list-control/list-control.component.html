@@ -14,17 +14,16 @@
     class="lib-list__content"
     (showMessage)="onShowMessage()"
     [focusMatch]="selectedValue"
-    [originalListItem]="listItems"
+    [originalListItem]="listItemsCopy"
   >
-    <!-- could implement slice pipe -->
-    <ng-container *ngIf="listItems.length; else empty">
+    <ng-container *ngIf="listItemsCopy.length; else empty">
       <lib-list-control-item
         #cmp
         class="lib-list__item"
-        *ngFor="let item of listItems.slice(0, 10); let i = index"
+        *ngFor="let item of listItemsCopy | slice:0:10; let i = index"
         [value]="item"
       >
-        {{ listItems.length - i }}
+        {{ listItemsCopy.length - i }}
         -
         {{ item }}
       </lib-list-control-item>
