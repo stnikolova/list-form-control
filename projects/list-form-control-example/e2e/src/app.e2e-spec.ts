@@ -8,7 +8,7 @@ describe('List Control Component', () => {
     page = new AppPage();
   });
 
-  it('should display an input and when the user enters value and click enter should add to list', async () => {
+  it('should display an input and upon enter should add it to the list', async () => {
     page.navigateTo();
 
     const textToPopulate = 'coco jumbo';
@@ -26,7 +26,7 @@ describe('List Control Component', () => {
     expect(listElements.first().getAttribute('ng-reflect-value')).toEqual(textToPopulate);
   });
 
-  it('should display an input and should click up and down arrow and highlight each item in the list', async () => {
+  it('should display an input and should be able to highlight element using up and down arrow', async () => {
     page.navigateTo();
 
     const textToPopulate = 'coco jumbo';
