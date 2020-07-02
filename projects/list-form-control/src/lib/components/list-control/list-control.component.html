@@ -16,15 +16,16 @@
     [focusMatch]="selectedValue"
     [originalListItem]="listItems"
   >
-    <!-- could implement reverse pipe -->
+    <!-- could implement slice pipe -->
     <ng-container *ngIf="listItems.length; else empty">
       <lib-list-control-item
         #cmp
         class="lib-list__item"
-        *ngFor="let item of listItems.slice(0, 3); let i = index"
+        *ngFor="let item of listItems.slice(0, 10); let i = index"
         [value]="item"
       >
         {{ listItems.length - i }}
+        -
         {{ item }}
       </lib-list-control-item>
     </ng-container>

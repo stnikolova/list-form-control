@@ -9,7 +9,18 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class AppComponent implements OnInit {
   public myControl = new FormControl();
   public myForm: FormGroup = new FormGroup({ myControl: this.myControl });
-  public items = ['stefi', 'joro', 'kakodja', 'parporo'];
+  public items = [
+    'alpha',
+    'bravo',
+    'charlie',
+    'delta',
+    'echo',
+    'foxtrot',
+    'golf',
+    'hotel',
+    'india',
+    'juliet',
+  ];
 
   public ngOnInit() {
     this.myControl.valueChanges.subscribe((res) => console.log(res));
