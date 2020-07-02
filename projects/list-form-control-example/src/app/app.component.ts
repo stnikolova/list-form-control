@@ -12,7 +12,6 @@ export class AppComponent implements OnInit {
   public items = ['stefi', 'joro', 'kakodja', 'parporo'];
 
   public ngOnInit() {
-    // this.myForm
     this.myControl.valueChanges.subscribe((res) => console.log(res));
   }
 

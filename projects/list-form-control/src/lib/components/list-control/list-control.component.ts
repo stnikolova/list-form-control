@@ -11,8 +11,9 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   ViewEncapsulation,
+  OnDestroy,
 } from '@angular/core';
-import { merge } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ListControlItemComponent } from '../list-control-item/list-control-item.component';
@@ -33,13 +34,16 @@ import { ListControlDirective } from '../../directives/list-control.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ListControlComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class ListControlComponent implements OnDestroy, AfterViewInit, ControlValueAccessor {
   @Input() listItems: Array<string>;
 
   @ViewChild(ListControlContentComponent)
   content: ListControlContentComponent;
 
   @ContentChild(ListControlDirective) input: ListControlDirective;
+
+  private subscriptions: Array<Subscription> = [];
+
   public keyboardEventsManager: ListKeyManager<any>;
   public focusKeyManager: FocusKeyManager<ListControlItemComponent>;
 
@@ -50,17 +54,22 @@ export class ListControlComponent implements OnInit, AfterViewInit, ControlValue
 
   constructor(private cd: ChangeDetectorRef) {}
 
-  public ngOnInit(): void {}
-
   public ngAfterViewInit() {
     this.focusKeyManager = new FocusKeyManager(this.content.listItemElements).withWrap();
-    this.mergeFocus(this.content.listItemElements).subscribe((val: string) => {
-      this.value = val;
-    });
+    this.subscriptions.push(
+      this.mergeFocus(this.content.listItemElements).subscribe((val: string) => {
+        this.value = val;
+        // TODO: Need to dispose of the subscription when the one one change is fired
+      }),
 
-    this.itemsFocus().subscribe((val: string) => {
-      this.value = val;
-    });
+      this.itemsFocus().subscribe((val: string) => {
+        this.value = val;
+      }),
+    );
+  }
+
+  public ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   set value(val) {
@@ -100,6 +109,11 @@ export class ListControlComponent implements OnInit, AfterViewInit, ControlValue
     this.listItems.unshift(value);
   }
 
+  public onShowMessage() {
+    this.showMessage = true;
+    this.cd.detectChanges();
+  }
+
   private itemsFocus() {
     return this.content.listItemElements.changes.pipe(
       switchMap((items) => {
@@ -108,15 +122,10 @@ export class ListControlComponent implements OnInit, AfterViewInit, ControlValue
     );
   }
 
-  mergeFocus(items: any) {
+  private mergeFocus(items: any) {
     const focus$ = items.map((item) => {
       return item.focus$;
     });
     return merge(...focus$);
-  }
-
-  onShowMessage() {
-    this.showMessage = true;
-    this.cd.detectChanges();
   }
 }
