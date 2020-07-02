@@ -19,7 +19,6 @@
   >
     <ng-container *ngIf="listItemsCopy.length; else empty">
       <lib-list-control-item
-        #cmp
         class="lib-list__item"
         *ngFor="let item of listItemsCopy | slice:0:10; let i = index"
         [value]="item"
@@ -30,7 +29,6 @@
       </lib-list-control-item>
     </ng-container>
 
-    <!-- Change message -->
     <ng-template #empty>
       <span class="lib-list__content-empty">The list is empty.</span>
     </ng-template>

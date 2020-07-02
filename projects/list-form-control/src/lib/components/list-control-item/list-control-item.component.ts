@@ -20,9 +20,12 @@ export class ListControlItemComponent implements OnInit, FocusableOption {
   }
 
   ngOnInit(): void {
+    // Creates an observable to inform if the item is on focus
+    // Binds the value of each item to stream as res when on focus
     this.focus$ = fromEvent(this.element, 'focus').pipe(mapTo(this.value));
   }
 
+  // Sets the item on focus
   focus(): void {
     this.element.focus();
   }

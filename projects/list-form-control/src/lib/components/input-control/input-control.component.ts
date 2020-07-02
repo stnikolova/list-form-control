@@ -39,20 +39,25 @@ export class InputControlComponent implements OnInit, ControlValueAccessor {
       this.input.next(val);
     }
   }
+  // ControlValueAccessor functions are used to propagate the value changes
 
+  // Writes passed in value to the input element
   writeValue(value: any) {
     this.value = value;
   }
 
+  // Called when the control's value changes in the UI
   registerOnChange(fn: any) {
     this.onChange = fn;
   }
 
+  // Update the form model on blur
   registerOnTouched(fn: any) {
     this.onTouch = fn;
   }
 
   ngOnInit(): void {
+    // Delay value change emit to avoid excessive function calls
     this.input.pipe(debounceTime(300), distinctUntilChanged()).subscribe((value) => {
       this.onChange(value);
       this.onTouch(value);
@@ -68,10 +73,12 @@ export class InputControlComponent implements OnInit, ControlValueAccessor {
     this.inputFocus.emit(true);
   }
 
+  // Listens for when the user is typing
   public modelChange(event) {
     this.input.next(event);
   }
 
+  // Clears the input field
   public clearInput() {
     this.value = '';
   }

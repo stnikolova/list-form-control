@@ -16,7 +16,7 @@ export class ListControlDirective {
 
   @HostListener('inputFocus', ['$event'])
   keyFunc(event) {
-    this.listControl.toggleDropdown(event);
+    this.listControl.toggleList(event);
   }
 
   @HostListener('window:click', ['$event'])
@@ -24,6 +24,6 @@ export class ListControlDirective {
     event.stopPropagation();
     const clickTarget = event.target.parentElement as HTMLElement;
     const isOrigin = clickTarget === this.origin;
-    this.listControl.toggleDropdown(isOrigin);
+    this.listControl.toggleList(isOrigin);
   }
 }

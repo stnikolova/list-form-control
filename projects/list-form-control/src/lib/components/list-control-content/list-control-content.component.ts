@@ -7,12 +7,13 @@ import { ListControlItemComponent } from '../list-control-item/list-control-item
   exportAs: 'listControl',
 })
 export class ListControlContentComponent {
+  // Gets a reference of all the list item DOM elements
   @ContentChildren(ListControlItemComponent) listItemElements: QueryList<any>;
-  @ContentChildren('cmp') cmpTest: QueryList<ListControlItemComponent>;
 
   public isVisible = false;
 
-  toggleDropdown(focus: boolean) {
+  // Sets the visibility of the lost
+  toggleList(focus: boolean) {
     this.isVisible = focus;
   }
 }
