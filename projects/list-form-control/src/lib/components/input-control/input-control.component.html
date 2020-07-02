@@ -2,6 +2,7 @@
     type="text"
     placeholder="Start typing..."
     aria-label="List"
+    class="lib-list__input-field"
     [(ngModel)]="val"
     (ngModelChange)="modelChange($event)"
     (keydown.enter)="onValueEnter($event)"

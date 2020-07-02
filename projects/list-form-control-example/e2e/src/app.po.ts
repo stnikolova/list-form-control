@@ -6,7 +6,7 @@ export class AppPage {
   }
 
   getInputElement(): any {
-    return element(by.css('.lib-list__input'));
+    return element(by.css('.lib-list__input-field'));
   }
 
   getListElements(): any {
@@ -15,5 +15,14 @@ export class AppPage {
 
   getClearIcon(): any {
     return element(by.css('.lib-list__input--clear'));
+  }
+
+  async populateInputField(): Promise<any> {
+    const textToPopulate = 'coco jumbo';
+    const inputElement = this.getInputElement();
+
+    await browser.sleep(200);
+
+    inputElement.sendKeys(textToPopulate);
   }
 }
