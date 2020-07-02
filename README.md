@@ -49,7 +49,7 @@ More detailed instructions on how to use the component in your own application a
 
 | Component | README |
 | ------ | ------ |
-| List Form Control Component | [projects/list-form-control/src/lib/components/list-control/README.md][PlDb] |
+| List Form Control Component | [README.md](./projects/list-form-control/src/lib/components/list-control/README.md) |
 
 
 ### Development
