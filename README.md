@@ -1,27 +1,78 @@
-# ListFormControl
+# List Form Control
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
 
-## Development server
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Library
 
-## Code scaffolding
+  - Provides a reusable component 
+  - The component consits of an input and a list
+  - Can be used as a form control
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Tech
 
-## Build
+List Form Control is Angular compatible
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+* [Angular](https://angular.io/ "Angulars's Homepage") - HTML enhanced for web apps!
+* [Accessibility CDK](https://material.angular.io/cdk/a11y/overview "Angular Material Accessibility Page") - The a11y package provides a number of tools to improve accessibility, described below.
+* [Karma](https://karma-runner.github.io/latest/index.html "Karma GitHub Page") - A productive testing environment to developers.
+* [Protractor](https://www.protractortest.org/ "Protractor's Homepage") - An end-to-end test framework for Angular apps.
 
-## Running unit tests
+### Setup
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Install the dependencies and devDependencies and start the server.
 
-## Running end-to-end tests
+#### Installation
+```sh
+$ cd list-form-control
+$ npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+#### Build Library
 
-## Further help
+List Form Control is currently not available as a separate npm package and needs to be build locally. 
+```sh
+$ cd list-form-control
+$ npm run lib:build
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#### Example
+
+The library contains an example project for preview and testing purposes 
+```sh
+$ npm start
+```
+
+Navigate to `http://localhost:4200/`.
+
+More detailed instructions on how to use the component in your own application are linked below.
+
+| Component | README |
+| ------ | ------ |
+| List Form Control Component | [projects/list-form-control/src/lib/components/list-control/README.md][PlDb] |
+
+
+### Development
+
+In development mode the project can monitor changes and automatically run rebuilds
+Open your favorite Terminal and use the following commands.
+
+For example project changes:
+```sh
+$ npm start
+```
+
+For library changes:
+```sh
+$ npm run lib:build:watch
+```
+
+For unit test changes:
+```sh
+$ npm run test
+```
+
+To run e2e test
+```sh
+$ npm run e2e
+```
