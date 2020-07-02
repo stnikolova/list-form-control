@@ -6,21 +6,16 @@ import {
   QueryList,
   OnChanges,
   SimpleChanges,
-  HostListener,
-  OnInit,
-  AfterViewInit,
   Output,
   EventEmitter,
 } from '@angular/core';
-import { switchMap, mapTo } from 'rxjs/operators';
-import { Observable, interval, merge } from 'rxjs';
 import { ListControlItemComponent } from '../components/list-control-item/list-control-item.component';
 
 @Directive({
   selector: '[focusMatch]',
   exportAs: 'focusMatch',
 })
-export class FocusValueMatchDirective implements OnChanges, AfterViewInit {
+export class FocusValueMatchDirective implements OnChanges {
   @Output() public showMessage: EventEmitter<boolean> = new EventEmitter();
 
   @Input() focusMatch: string;
@@ -44,11 +39,5 @@ export class FocusValueMatchDirective implements OnChanges, AfterViewInit {
         this.showMessage.emit(true);
       }
     }
-  }
-
-  ngAfterViewInit() {
-    // // rename
-    // this.itemsFocus().subscribe(val => {
-    // });
   }
 }

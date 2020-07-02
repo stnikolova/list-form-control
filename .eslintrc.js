@@ -37,6 +37,7 @@ module.exports = {
         'lines-between-class-members': 'off',
         'import/no-extraneous-dependencies': 'off',
         '@angular-eslint/component-selector': 'off',
+        '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/unbound-method': [
           'error',
           {

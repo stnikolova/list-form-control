@@ -1,4 +1,6 @@
-<span *ngIf="showMessage" class="lib-list__message">The item is already in the list but not in the view</span>
+<span *ngIf="showMessage" class="lib-list__message">
+  The item is already in the list but not in the view
+</span>
 
 <div class="lib-list__container">
   <lib-input-control
@@ -9,7 +11,7 @@
   <lib-list-control-content
     #list
     class="lib-list__content"
-    (showMessage)="onShowMessage($event)"
+    (showMessage)="onShowMessage()"
     [focusMatch]="selectedValue"
     [originalListItem]="listItems"
   >

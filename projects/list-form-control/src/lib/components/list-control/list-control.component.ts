@@ -1,12 +1,9 @@
-import { ListKeyManager, FocusTrapFactory, FocusMonitor, FocusKeyManager } from '@angular/cdk/a11y';
+import { ListKeyManager, FocusKeyManager } from '@angular/cdk/a11y';
 import {
   Component,
   OnInit,
-  ViewChildren,
-  QueryList,
   AfterViewInit,
   HostListener,
-  ContentChildren,
   ViewChild,
   ContentChild,
   Input,
@@ -28,7 +25,6 @@ import { ListControlDirective } from '../../directives/list-control.directive';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       useExisting: forwardRef(() => ListControlComponent),
       multi: true,
     },
@@ -52,11 +48,11 @@ export class ListControlComponent implements OnInit, AfterViewInit, ControlValue
 
   constructor(private cd: ChangeDetectorRef) {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 
   public ngAfterViewInit() {
-    this.focusKeyManager = new FocusKeyManager(this.content.listItems).withWrap();
-    this.mergeFocus(this.content.listItems).subscribe((val: string) => {
+    this.focusKeyManager = new FocusKeyManager(this.content.listItemElements).withWrap();
+    this.mergeFocus(this.content.listItemElements).subscribe((val: string) => {
       this.value = val;
     });
 
@@ -103,7 +99,7 @@ export class ListControlComponent implements OnInit, AfterViewInit, ControlValue
   }
 
   private itemsFocus() {
-    return this.content.listItems.changes.pipe(
+    return this.content.listItemElements.changes.pipe(
       switchMap((items) => {
         return this.mergeFocus(items);
       }),
@@ -117,7 +113,7 @@ export class ListControlComponent implements OnInit, AfterViewInit, ControlValue
     return merge(...focus$);
   }
 
-  onShowMessage(event) {
+  onShowMessage() {
     this.showMessage = true;
     this.cd.detectChanges();
   }
