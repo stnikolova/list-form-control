@@ -22,6 +22,7 @@ import { ListControlDirective } from '../../directives/list-control.directive';
 @Component({
   selector: 'lib-list-control',
   templateUrl: './list-control.component.html',
+  styleUrls: ['./list-control.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

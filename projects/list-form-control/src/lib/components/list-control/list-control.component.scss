@@ -1,0 +1,65 @@
+.lib-list {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  border: solid 1px #ccc;
+  background: #fff;
+
+  &__container {
+    width: 200px;
+    position: relative;
+    margin: 10px auto;
+  }
+
+  &__item {
+    &--ellipsis {
+      padding: 5px 30px 5px 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &:focus {
+      outline: none;
+
+      .lib-list__item--ellipsis {
+        background-color: #ddd;
+      }
+    }
+  }
+
+  &__message {
+    display: block;
+    margin-top: -18px;
+  }
+
+  &__input {
+    input {
+      border: solid 1px #ccc;
+      padding: 5px 10px;
+      width: 100%;
+      box-sizing: border-box;
+      position: relative;
+      padding-right: 30px;
+    }
+
+    i {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-style: normal;
+    }
+
+    &:focus {
+      outline-offset: 0;
+    }
+  }
+
+  &__content-empty {
+    padding: 5px 10px;
+    text-align: center;
+    color: #989898;
+  }
+}

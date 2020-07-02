@@ -4,7 +4,6 @@ import { ListControlItemComponent } from '../list-control-item/list-control-item
 @Component({
   selector: 'lib-list-control-content',
   templateUrl: './list-control-content.component.html',
-  styleUrls: ['./list-control-content.component.scss'],
   exportAs: 'listControl',
 })
 export class ListControlContentComponent {
