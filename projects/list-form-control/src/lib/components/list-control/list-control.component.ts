@@ -35,7 +35,7 @@ import { ListControlDirective } from '../../directives/list-control.directive';
   encapsulation: ViewEncapsulation.None,
 })
 export class ListControlComponent implements OnDestroy, AfterViewInit, ControlValueAccessor {
-  @Input() listItems: Array<string>;
+  @Input() listItems: Array<string> = [];
 
   @ViewChild(ListControlContentComponent)
   content: ListControlContentComponent;
